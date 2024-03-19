@@ -1,10 +1,7 @@
 <?php
 
-// in questa funzione, ho usato il metodo substr per prendere solo li primi caratteri, definiti da $length e str_shuffle mescola i caratteri
-function generatePassword($length) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
-    return substr(str_shuffle($characters), 0, $length);
-}
+// richiamo la funzione dal file esterno results.php
+include './partials/functions.php';
 
 // intval() è una funzione di PHP utilizzata per convertire un valore in un numero intero.
 if (isset($_GET['length'])) {
