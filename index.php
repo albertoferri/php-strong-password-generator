@@ -10,11 +10,29 @@ include './partials/functions.php';
 //     $randomPassword = generatePassword($length);
 // }
 
+
+
 // BONUS 1
 // salva le variabili e aprendo la session all'inizio, porta il codice in un altro file tramite header
+// if (isset($_GET['length'])) {
+//     $length = intval($_GET['length']);
+//     $_SESSION['randomPassword'] = generatePassword($length);
+//     $_SESSION['length'] = $length;
+//     header('Location: results.php');
+//     exit();
+// }
+
+
+
+
+// BONUS 2
 if (isset($_GET['length'])) {
     $length = intval($_GET['length']);
-    $_SESSION['randomPassword'] = generatePassword($length);
+    $includeNumbers = isset($_GET['numbers']);
+    $includeLetters = isset($_GET['letters']);
+    $includeSymbols = isset($_GET['symbols']);
+    $allowRepeat = isset($_GET['repeat']);
+    $_SESSION['randomPassword'] = generatePassword($length, $includeNumbers, $includeLetters, $includeSymbols, $allowRepeat);
     $_SESSION['length'] = $length;
     header('Location: results.php');
     exit();
@@ -41,9 +59,28 @@ if (isset($_GET['length'])) {
         <div class="row d-flex flex-column align-items-center">
             
             <form class=" col-6 d-flex justify-content-between align-items-center gap-4 p-3 border border-5 border-primary rounded-4" method="GET" action="index.php">
-                <div class="input d-flex gap-1">
+                <div class="input d-flex flex-column gap-1">
                     <label for="length">Lunghezza della password:</label><br>
                     <input type="number" id="length" name="length" min="1"><br>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="numbersSwitch" name="numbers" value="1">
+                        <label class="form-check-label" for="numbersSwitch">Includi numeri</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="lettersSwitch" name="letters" value="1">
+                        <label class="form-check-label" for="lettersSwitch">Includi lettere</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="symbolsSwitch" name="symbols" value="1">
+                        <label class="form-check-label" for="symbolsSwitch">Includi simboli</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="repeatSwitch" name="repeat" value="1">
+                        <label class="form-check-label" for="repeatSwitch">Permetti la ripetizione di caratteri</label>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-outline-warning fw-bold">GENERA</button>
             </form>
