@@ -61,7 +61,7 @@ if (isset($_GET['length'])) {
             <form class=" col-6 d-flex justify-content-between align-items-center gap-4 p-3 border border-5 border-primary rounded-4" method="GET" action="index.php">
                 <div class="input d-flex flex-column gap-2">
                     <label for="length">Lunghezza della password:</label>
-                    <input type="number" id="length" name="length" min="7" placeholder="min: 7">
+                    <input type="number" id="length" name="length" min="7" required placeholder="min: 7">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="numbersSwitch" name="numbers" value="1">
                         <label class="form-check-label" for="numbersSwitch">Includi numeri</label>
