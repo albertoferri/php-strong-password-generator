@@ -28,9 +28,15 @@ function generatePassword($length, $includeNumbers, $includeLetters, $includeSym
         $characters .= $symbols;
     }
 
+    // Se nessuno degli switch è selezionato, fai un mix di tutte le variabili
+    if ($characters == '') {
+        $characters = $numbers . $letters . $symbols;
+    }
+
     $password = '';
     for ($i = 0; $i < $length; $i++) {
         $randomChar = $characters[rand(0, strlen($characters) - 1)];
+        // $allowRepeat è una variabile booleana e se la ripetizione non è consentita e il carattere generato è già presente nelle password l'iterazione viene annullata decrementando l'$i
         if (!$allowRepeat && strpos($password, $randomChar) !== false) {
             $i--;
         } else {
